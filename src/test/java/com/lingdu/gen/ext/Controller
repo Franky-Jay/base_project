@@ -1,0 +1,67 @@
+package ${groupid}.${domainName?lower_case}.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import ${groupid}.common.domain.CurrentUser;
+import ${groupid}.common.domain.JsonResult;
+import ${groupid}.datatables.domain.DataTablesRequest;
+import ${groupid}.datatables.domain.DataTablesResponse;
+import ${groupid}.${domainName?lower_case}.domain.${domainName}VO;
+import ${groupid}.${domainName?lower_case}.service.${domainName}Service;
+
+
+@Controller
+@RequestMapping("/${domainName?lower_case}")
+public class ${domainName}Controller {
+	@Autowired
+	private ${domainName}Service service;
+	
+	@RequestMapping("/edit")
+	public String edit(Integer id,ModelMap map){
+		if(id!=null){
+			map.addAttribute("entity",service.get(id));
+		}
+		return "${domainName?lower_case}/edit";//跳转到编辑页面
+	}
+	
+	@RequestMapping("/doEdit")
+	public String doEdit(${domainName}VO entity){
+		CurrentUser user = CurrentUser.getInstance();
+		//entity.setCreatorUserId(user.getUserId());//创建者id
+		if(entity.getId()!=null){//修改
+			service.update(entity);
+		}else{//新增
+			service.add(entity);
+		}
+		return "redirect:/${domainName?lower_case}/list.action";//跳转到列表页面
+	}
+	
+	@RequestMapping("/rest/doDelete")
+	public @ResponseBody JsonResult doDelete(Integer id){
+		JsonResult rs=new JsonResult();
+		service.delete(id);
+		rs.setStatus(1);
+		rs.setMsg("删除成功！");
+		return rs;
+	}
+	
+	@RequestMapping("/list")
+	public String list(){
+		return "${domainName?lower_case}/list";//跳转到分页查询页面
+	}
+	/**
+	 * datatable分页查询接口
+	 * @param request
+	 * @return
+	 * @throws Throwable
+	 */
+	@RequestMapping("/rest/doSearch")
+	public @ResponseBody DataTablesResponse<${domainName}VO> pageSearch(
+			@RequestBody DataTablesRequest request) throws Throwable{
+		return service.listByPage(request);
+	}
+}

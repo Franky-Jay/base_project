@@ -1,0 +1,67 @@
+package ${groupid}.${domainName?lower_case}.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import ${groupid}.common.util.SearchConditionUtils;
+import ${groupid}.datatables.domain.DataTablesRequest;
+import ${groupid}.datatables.domain.DataTablesResponse;
+import ${groupid}.${domainName?lower_case}.dao.${domainName}VOMapper;
+import ${groupid}.${domainName?lower_case}.domain.${domainName}VO;
+import ${groupid}.${domainName?lower_case}.domain.${domainName}VOExample;
+
+
+@Service
+public class ${domainName}ServiceImp implements ${domainName}Service {
+	@Autowired
+	private ${domainName}VOMapper mapper;
+	/**
+	 * 新增
+	 * @param entity
+	 * @return
+	 */
+	@Override
+	public int add(${domainName}VO entity) {
+		return mapper.insertSelective(entity);
+	}
+	/**
+	 * 删除
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public int delete(Integer id) {
+		return mapper.deleteByPrimaryKey(id);
+	}
+	/**
+	 * 修改
+	 * @param entity
+	 * @return
+	 */
+	@Override
+	public int update(${domainName}VO entity) {
+		return mapper.updateByPrimaryKeySelective(entity);
+	}
+	/**
+	 * 查询
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public ${domainName}VO get(Integer id) {
+		return mapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public DataTablesResponse<${domainName}VO> listByPage(DataTablesRequest request)
+			throws Throwable {
+		${domainName}VOExample example = new ${domainName}VOExample();
+		DataTablesResponse<${domainName}VO> response = new DataTablesResponse<${domainName}VO>();
+		SearchConditionUtils.wrapperAndCondition(example, request);// 封装查询条件
+		response.setDraw(request.getDraw());
+		response.setRecordsTotal(mapper.countByExample(example));
+		response.setData(mapper.selectByExample(example));
+		return response;
+		
+	}
+
+}
