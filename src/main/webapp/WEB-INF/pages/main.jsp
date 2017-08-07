@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>码神软件后台管理系统</title>
+<title>LingDu后台管理系统</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <%@ include file="/WEB-INF/pages/common/rs_css.jsp"%>
 </head>
@@ -21,7 +21,7 @@
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
 				<a href="#" class="navbar-brand"> <small> <i
-						class="icon-leaf"></i> 码神官网后台管理
+						class="icon-leaf"></i> LingDu后台管理
 				</small>
 				</a>
 				<!-- /.brand -->

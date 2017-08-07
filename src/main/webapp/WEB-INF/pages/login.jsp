@@ -22,10 +22,10 @@ if(window !=top){
 					<div class="login-container">
 						<div class="center">
 							<h1>
-								<i class="icon-leaf green"></i> <span class="red">MS</span> <span
+								<i class="icon-leaf green"></i> <span class="red">LD</span> <span
 									class="white">后台管理系统</span>
 							</h1>
-							<h4 class="blue">&copy; 码神软件</h4>
+							<h4 class="blue">&copy; LingDu</h4>
 						</div>
 
 						<div class="space-6"></div>
