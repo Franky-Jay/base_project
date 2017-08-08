@@ -38,7 +38,7 @@ public class ExtGenMain {
 
 	public static void main(String[] args) throws Throwable {
 		ExtGenMain extGen = new ExtGenMain();
-		extGen.setDomainName("Test");///TODO domian名字,首字母大写
+		extGen.setDomainName("Menu");///TODO domian名字,首字母大写
 		extGen.setGroupid("com.base");///TODO 包名
 		
 		//生成java类
@@ -48,7 +48,7 @@ public class ExtGenMain {
 		extGen.createJavaFile(javapkgSuffix_controller, Java_Type_Controller);
 		//生成页面
 		extGen.setPagePrefix("/src/main/webapp/WEB-INF/pages/");
-		extGen.setDomainclass("com.base.test.domain.TestVO");//TODO domain全路径
+		extGen.setDomainclass("com.base.menu.domain.MenuVO");//TODO domain全路径
 		extGen.createPageFile(Page_Type_List);
 		extGen.createPageFile(Page_Type_Edit);
 

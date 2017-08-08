@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.base.menu.dao.MenuVOMapper" >
+  <resultMap id="BaseResultMap" type="com.base.menu.domain.MenuVO" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="pId" property="pid" jdbcType="VARCHAR" />
+    <result column="open" property="open" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="uri" property="uri" jdbcType="VARCHAR" />
+    <result column="classpath" property="classpath" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="iconOpen" property="iconopen" jdbcType="VARCHAR" />
+    <result column="iconClose" property="iconclose" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="orders" property="orders" jdbcType="BIGINT" />
+    <result column="islist" property="islist" jdbcType="INTEGER" />
+    <result column="business_code" property="businessCode" jdbcType="VARCHAR" />
+    <result column="lastmodifytime" property="lastmodifytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, pId, open, name, type, uri, classpath, icon, iconOpen, iconClose, status, ctime, 
+    orders, islist, business_code, lastmodifytime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.base.menu.domain.MenuVOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from base_menu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_menu
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from base_menu
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.base.menu.domain.MenuVOExample" >
+    delete from base_menu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.base.menu.domain.MenuVO" useGeneratedKeys="true" keyProperty="id" >
+    insert into base_menu (id, pId, open, 
+      name, type, uri, classpath, 
+      icon, iconOpen, iconClose, 
+      status, ctime, orders, 
+      islist, business_code, lastmodifytime
+      )
+    values (#{id,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{open,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{uri,jdbcType=VARCHAR}, #{classpath,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{iconopen,jdbcType=VARCHAR}, #{iconclose,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{ctime,jdbcType=TIMESTAMP}, #{orders,jdbcType=BIGINT}, 
+      #{islist,jdbcType=INTEGER}, #{businessCode,jdbcType=VARCHAR}, #{lastmodifytime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.base.menu.domain.MenuVO" useGeneratedKeys="true" keyProperty="id" >
+    insert into base_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pid != null" >
+        pId,
+      </if>
+      <if test="open != null" >
+        open,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="uri != null" >
+        uri,
+      </if>
+      <if test="classpath != null" >
+        classpath,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="iconopen != null" >
+        iconOpen,
+      </if>
+      <if test="iconclose != null" >
+        iconClose,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="orders != null" >
+        orders,
+      </if>
+      <if test="islist != null" >
+        islist,
+      </if>
+      <if test="businessCode != null" >
+        business_code,
+      </if>
+      <if test="lastmodifytime != null" >
+        lastmodifytime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="open != null" >
+        #{open,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="uri != null" >
+        #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="classpath != null" >
+        #{classpath,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="iconopen != null" >
+        #{iconopen,jdbcType=VARCHAR},
+      </if>
+      <if test="iconclose != null" >
+        #{iconclose,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=BIGINT},
+      </if>
+      <if test="islist != null" >
+        #{islist,jdbcType=INTEGER},
+      </if>
+      <if test="businessCode != null" >
+        #{businessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifytime != null" >
+        #{lastmodifytime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.base.menu.domain.MenuVOExample" resultType="java.lang.Integer" >
+    select count(*) from base_menu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update base_menu
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null" >
+        pId = #{record.pid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.open != null" >
+        open = #{record.open,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.uri != null" >
+        uri = #{record.uri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classpath != null" >
+        classpath = #{record.classpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon != null" >
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iconopen != null" >
+        iconOpen = #{record.iconopen,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iconclose != null" >
+        iconClose = #{record.iconclose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.ctime != null" >
+        ctime = #{record.ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orders != null" >
+        orders = #{record.orders,jdbcType=BIGINT},
+      </if>
+      <if test="record.islist != null" >
+        islist = #{record.islist,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessCode != null" >
+        business_code = #{record.businessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastmodifytime != null" >
+        lastmodifytime = #{record.lastmodifytime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update base_menu
+    set id = #{record.id,jdbcType=VARCHAR},
+      pId = #{record.pid,jdbcType=VARCHAR},
+      open = #{record.open,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=TINYINT},
+      uri = #{record.uri,jdbcType=VARCHAR},
+      classpath = #{record.classpath,jdbcType=VARCHAR},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      iconOpen = #{record.iconopen,jdbcType=VARCHAR},
+      iconClose = #{record.iconclose,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      ctime = #{record.ctime,jdbcType=TIMESTAMP},
+      orders = #{record.orders,jdbcType=BIGINT},
+      islist = #{record.islist,jdbcType=INTEGER},
+      business_code = #{record.businessCode,jdbcType=VARCHAR},
+      lastmodifytime = #{record.lastmodifytime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.base.menu.domain.MenuVO" >
+    update base_menu
+    <set >
+      <if test="pid != null" >
+        pId = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="open != null" >
+        open = #{open,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="uri != null" >
+        uri = #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="classpath != null" >
+        classpath = #{classpath,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="iconopen != null" >
+        iconOpen = #{iconopen,jdbcType=VARCHAR},
+      </if>
+      <if test="iconclose != null" >
+        iconClose = #{iconclose,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orders != null" >
+        orders = #{orders,jdbcType=BIGINT},
+      </if>
+      <if test="islist != null" >
+        islist = #{islist,jdbcType=INTEGER},
+      </if>
+      <if test="businessCode != null" >
+        business_code = #{businessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifytime != null" >
+        lastmodifytime = #{lastmodifytime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.base.menu.domain.MenuVO" >
+    update base_menu
+    set pId = #{pid,jdbcType=VARCHAR},
+      open = #{open,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      uri = #{uri,jdbcType=VARCHAR},
+      classpath = #{classpath,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      iconOpen = #{iconopen,jdbcType=VARCHAR},
+      iconClose = #{iconclose,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      orders = #{orders,jdbcType=BIGINT},
+      islist = #{islist,jdbcType=INTEGER},
+      business_code = #{businessCode,jdbcType=VARCHAR},
+      lastmodifytime = #{lastmodifytime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

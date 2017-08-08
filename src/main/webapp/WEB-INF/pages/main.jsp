@@ -118,6 +118,9 @@
 							<li>
 								<a href="${path }/user/list.action"target="contentframe"><i class="icon-double-angle-right"></i>管理员列表</a>
 							</li>
+							<li>
+								<a href="${path }/menu/list.action"target="contentframe"><i class="icon-double-angle-right"></i>菜单列表</a>
+							</li>
 						</ul>
 					</li>
 					
