@@ -39,4 +39,6 @@
 	<script src="${path}/resources/assets/js/ace-elements.min.js"></script>
 	<script src="${path}/resources/assets/js/ace.min.js"></script>
 	<script src="${path}/resources/assets/js/handlebars.min.js"></script>
+	<script src="${path}/resources/assets/js/jquery.form.js"></script>
+	
 	<!-- inline scripts related to this page -->

@@ -56,6 +56,7 @@ public class MenuServiceImp implements MenuService {
 	public List<MenuVO> getAllParent(String pid) {
 		MenuVOExample example = new MenuVOExample();
 		example.createCriteria().andPidEqualTo(pid);
+		example.setOrderByClause("orders");
 		List<MenuVO> list = mapper.selectByExample(example);
 		if(list != null){
 			return list;
@@ -66,6 +67,7 @@ public class MenuServiceImp implements MenuService {
 	public List<MenuVO> getMenuFromPid(String pid) {
 		MenuVOExample example = new MenuVOExample();
 		example.createCriteria().andPidLike(pid);
+		example.setOrderByClause("orders");
 		List<MenuVO> list = mapper.selectByExample(example);
 		if(list != null){
 			return list;

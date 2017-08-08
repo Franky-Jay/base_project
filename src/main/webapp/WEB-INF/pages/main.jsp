@@ -121,6 +121,9 @@
 							<li>
 								<a href="${path }/menu/list.action"target="contentframe"><i class="icon-double-angle-right"></i>菜单列表</a>
 							</li>
+							<li>
+								<a href="${path }/dictionary/dictionary.action"target="contentframe"><i class="icon-double-angle-right"></i>数据字典</a>
+							</li>
 						</ul>
 					</li>
 					
