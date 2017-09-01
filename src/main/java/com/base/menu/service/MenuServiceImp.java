@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.base.common.util.IDUtil;
 import com.base.menu.dao.MenuVOMapper;
 import com.base.menu.domain.MenuVO;
 import com.base.menu.domain.MenuVOExample;
@@ -24,6 +25,7 @@ public class MenuServiceImp implements MenuService {
 	 */
 	@Override
 	public int add(MenuVO entity) {
+		entity.setId(entity.getPid() + IDUtil.sequence());
 		return mapper.insertSelective(entity);
 	}
 	/**

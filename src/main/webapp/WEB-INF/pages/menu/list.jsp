@@ -27,8 +27,136 @@
 				</div>
 			</div>
 			<div class="col-md-6 column">
-					
 			
+				<!-- 添加菜单（Modal） -->
+				<div class="modal fade" id="Modal" tabindex="-1" role="dialog"
+				     aria-labelledby="myModalLabel" aria-hidden="true">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				                <h4 class="modal-title" id="myModalLabel"></h4>
+				            </div>
+				            <div class="modal-body">
+				                <form id="myform" class="form-horizontal"  method="post" style="margin: 0 auto">
+				                    <input type="hidden" id="pid" value="" name="pid">
+				                    <input type="hidden" id="permissionId" value="" name="permissionId">
+				                    <div class="control-group">
+				                        <div class="panel-heading">
+				                            <label class="control-label" for="name">
+				                            	<h3 class="panel-title" style="color: red" id="nameTitle">请输入菜单的名称</h3>
+				                            </label>
+				                        </div>
+				                        <div class="controls">
+				                            <input type="text" class="form-control" id="name" name="name" required>
+				                        </div>
+				                    </div>
+				                    <br />
+				                    <div class="control-group">
+				                        <div class="panel-heading">
+				                            <label class="control-label" for="name">
+				                                <h3 class="panel-title">设置菜单状态</h3>
+				                            </label><br /> 
+				                            <label class="radio-inline"> 
+				                            	<input type="radio" value="1" name="status" checked="checked">可用
+				                        	</label> 
+				                        	<label class="radio-inline"> 
+				                        		<input type="radio" value="0" name="status" id="status">不可用
+				                        	</label>
+				                        </div>
+				                    </div>
+				                    
+				                    <input type="hidden" class="form-control" id="type" name="type">
+				                    <div class="control-group">
+				                        <div class="panel-heading">
+				                            <label class="control-label" for="name">
+				                                <h3 class="panel-title">序号</h3>
+				                            </label><br /> 
+				                        	<div class="controls">
+				                            	<input type="text" class="form-control" id="orders" name="orders">
+				                        	</div>
+				                        </div>
+				                    </div>
+				                    <div class="control-group">
+				                        <div class="panel-heading">
+				                            <label class="control-label" for="name">
+				                                <h3 class="panel-title">是否可查询列表</h3>
+				                            </label><br /> 
+				                            <label class="radio-inline"> 
+				                            	<input type="radio" value="1" name="islist" checked="checked">是
+				                        	</label> 
+				                        	<label class="radio-inline"> 
+				                        		<input type="radio" value="0" name="islist" id="islist">否
+				                        	</label>
+				                        </div>
+				                    </div>
+				                    <div class="control-group">
+				                        <div class="input-group" style="float: left">
+				                            <div class="input-group-btn">
+				                                <button type="button" class="btn btn-default" tabindex="-1">请选择菜单图标</button>
+				                                <button type="button" class="btn btn-default dropdown-toggle"
+				                                        data-toggle="dropdown" tabindex="-1">
+				                                    <span class="caret"></span>
+				                                </button>
+				                                <ul class="dropdown-menu">
+				                                    <li class="divider"></li>
+				                                    <li><a href="#" class="one">icon-desktop</a></li>
+				                                    <li class="divider"></li>
+				                                    <li><a href="#" class="two">icon-list</a></li>
+				                                    <li class="divider"></li>
+				                                </ul>
+				                            </div>
+				                            <!-- /btn-group -->
+				                            <input type="text" class="form-control"  required readonly name="icon" id="icon">
+				                        </div>
+				                        <!-- /input-group -->
+				                        <!-- /.col-lg-6 -->
+				                        <br>
+				                    </div> 
+				                    <div class="control-group">
+				                        <div class="panel-heading">
+				                            <label class="control-label" for="uri"><h3 class="panel-title">请输入URI路径</h3></label>
+				                        </div>
+				                        <div class="controls">
+				                            <input type="text" class="form-control" id="uri" name="uri">
+				                        </div>
+				                    </div>
+				                    <div class="control-group">
+				                        <div class="panel-heading">
+				                            <label class="control-label" for="classpath"><h3 class="panel-title">请输入类的全路径</h3></label>
+				                        </div>
+				                        <div class="controls">
+				                            <input type="text" class="form-control" id="classpath" name="classpath">
+				                        </div>
+				                    </div>
+				                    <div class="control-group">
+				                        <div class="panel-heading">
+				                            <label class="control-label" for="uri"><h3 class="panel-title">业务数据编码</h3></label>
+				                        </div>
+				                        <div class="controls">
+				                            <input type="text" class="form-control" id="businessCode" name="businessCode" >
+				                        </div>
+				                    </div>
+				                    <div class="control-group">
+				                        <br /> <br />
+				                        <div class="row clearfix">
+				                            <div class="col-md-12 column">
+				                                <!--<button type="submit" class="btn btn-success btn-lg" >按钮</button>-->
+				                                <button type="submit"
+				                                        class="btn btn-success btn-lg btn-block" id="from"
+				                                        style="text-shadow: black 5px 3px 3px;">
+				                                    <span class="glyphicon glyphicon-plus" id="but"></span>
+				                                </button>
+				                            </div>
+				                        </div>
+				                    </div>
+				                </form>
+				            </div>
+				        </div><!-- /.modal-content -->
+				    </div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+
+
 			</div>
 		</div>
 	</div>
@@ -97,7 +225,12 @@
             var btn = $("#addBtn_"+treeNode.tId);
             if (btn) btn.bind("click", function(){
                 var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-                //zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"new node" + (newCount++)});
+
+                if(treeNode.level == 0){ //说明是添加一级菜单
+                	
+                	$('#Modal').modal('show')
+                	
+                }
                 return false;
             }); 
     	}
@@ -127,7 +260,7 @@
     }
     
     
-    
+    //编辑节点
  	function editNode(treeId, treeNode) {
     	alert("123")
     	

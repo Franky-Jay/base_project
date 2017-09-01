@@ -79,10 +79,8 @@ public class UserServiceImp implements UserService {
 	@Override
 	public UserVO checkLogin(String account, String pwd) throws Throwable {
 		UserVO user = this.getUserByAccount(account);
-		System.out.println(user);
 		if (user != null) {
-			String inputPwd = MD5Util.md5(pwd + user.getSalt());
-			System.out.println(inputPwd);
+			String inputPwd = MD5Util.md5(pwd + user.getSalt());		
 			if (user.getPassword().equals(inputPwd)) {// 验证通过
 				return user;
 			}
