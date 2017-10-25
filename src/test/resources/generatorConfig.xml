@@ -33,21 +33,21 @@
 		</jdbcConnection>
 
 		<!-- model的配置 -->
-		<javaModelGenerator targetPackage="com.common.dictionary.domain"
+		<javaModelGenerator targetPackage="com.lingdu.info.domain"
 			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
 		<!-- mybatis的xml的配置 --> 	
-		<sqlMapGenerator targetPackage="com.common.dictionary.dao"
+		<sqlMapGenerator targetPackage="com.lingdu.info.dao"
 			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<!-- mapper的配置 -->
 		<javaClientGenerator type="XMLMAPPER"
-							 targetPackage="com.common.dictionary.dao" targetProject="src/main/java">
+							 targetPackage="com.lingdu.info.dao" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		
